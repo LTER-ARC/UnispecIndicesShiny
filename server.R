@@ -223,11 +223,6 @@ shinyServer(
         mutate(Treatment = replace(Treatment, Treatment %in% CT &
                                      aggregate_ctls, "CT"),
                Treatment)  %>% 
-        # filter(Year >= input$ctl_comp_years[1] &
-        #          Year <= input$ctl_comp_years[2]) %>%
-        # mutate(Year = factor(Year)) %>%
-        # mutate(Block = factor(Block)) %>%
-        # SUMMARIZE by block and site
         group_by(Year, DOY, Date, Site, Block, Treatment) %>%
         summarize(across(
           contains(input$byblock_index),
